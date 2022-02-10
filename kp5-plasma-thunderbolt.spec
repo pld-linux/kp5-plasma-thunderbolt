@@ -1,16 +1,16 @@
-%define		kdeplasmaver	5.23.5
+%define		kdeplasmaver	5.24.0
 %define		qtver		5.9.0
 %define		kpname		plasma-thunderbolt
 %define		kf5ver		5.39.0
 
 Summary:	plasma-nm
 Name:		kp5-%{kpname}
-Version:	5.23.5
+Version:	5.24.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	87c82df151974a9b34f592d2b23599e5
+# Source0-md5:	e6346ea04baa5c25e706145777a193dc
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= 5.15.0
 BuildRequires:	Qt5DBus-devel >= 5.15.0
@@ -74,7 +74,6 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{kpname}.lang
 %defattr(644,root,root,755)
 %{_libdir}/libkbolt.so
-%{_libdir}/qt5/plugins/kcms/kcm_bolt.so
 %{_libdir}/qt5/plugins/kf5/kded/kded_bolt.so
 %{_datadir}/knotifications5/kded_bolt.notifyrc
 %dir %{_datadir}/kpackage/kcms/kcm_bolt
@@ -84,6 +83,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kpackage/kcms/kcm_bolt/contents/ui/DeviceView.qml
 %{_datadir}/kpackage/kcms/kcm_bolt/contents/ui/main.qml
 %{_datadir}/kpackage/kcms/kcm_bolt/contents/ui/utils.js
-%{_datadir}/kpackage/kcms/kcm_bolt/metadata.desktop
-%{_datadir}/kpackage/kcms/kcm_bolt/metadata.json
-%{_datadir}/kservices5/kcm_bolt.desktop
+%{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_bolt.so
+%{_desktopdir}/kcm_bolt.desktop
