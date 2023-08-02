@@ -1,19 +1,19 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	5.27.6
+%define		kdeplasmaver	5.27.7
 %define		qtver		5.15.2
 %define		kpname		plasma-thunderbolt
 %define		kf5ver		5.39.0
 
 Summary:	plasma-nm
 Name:		kp5-%{kpname}
-Version:	5.27.6
+Version:	5.27.7
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	dc56cfa666c78e17fefacc602db8fc74
+# Source0-md5:	fa9f2208c27d8a3e99c0cbb113087338
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= 5.15.0
 BuildRequires:	Qt5DBus-devel >= 5.15.0
@@ -21,7 +21,7 @@ BuildRequires:	Qt5Gui-devel >= 5.15.0
 BuildRequires:	Qt5Network-devel >= 5.15.2
 BuildRequires:	Qt5Qml-devel >= 5.15.2
 BuildRequires:	Qt5Quick-devel >= 5.15.0
-BuildRequires:	cmake >= 2.8.12
+BuildRequires:	cmake >= 3.16.0
 BuildRequires:	gettext-devel
 BuildRequires:	kf5-extra-cmake-modules >= 5.70
 BuildRequires:	kf5-kauth-devel >= 5.85.0
@@ -54,14 +54,12 @@ which does the actual hard work of talking to the kernel.
 %setup -q -n %{kpname}-%{version}
 
 %build
-install -d build
-cd build
-%cmake -G Ninja \
+%cmake -B build \
+	-G Ninja \
 	%{!?with_tests:-DBUILD_TESTING=OFF} \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
-	-DHTML_INSTALL_DIR=%{_kdedocdir} \
-	../
-%ninja_build
+	-DHTML_INSTALL_DIR=%{_kdedocdir}
+%ninja_build -C build
 
 %if %{with tests}
 ctest
