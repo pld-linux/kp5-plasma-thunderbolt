@@ -1,19 +1,19 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	5.27.9
+%define		kdeplasmaver	5.27.10
 %define		qtver		5.15.2
 %define		kpname		plasma-thunderbolt
 %define		kf5ver		5.39.0
 
 Summary:	plasma-nm
 Name:		kp5-%{kpname}
-Version:	5.27.9
+Version:	5.27.10
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	291dc0920a49a6664b2107411bf44b8a
+# Source0-md5:	2861104cf1e31393d9cd87701042d3aa
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= 5.15.0
 BuildRequires:	Qt5DBus-devel >= 5.15.0
