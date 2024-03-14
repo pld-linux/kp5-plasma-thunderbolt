@@ -1,47 +1,47 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	5.93.0
+%define		kdeplasmaver	5.27.10
 %define		qtver		5.15.2
 %define		kpname		plasma-thunderbolt
-%define		kf6ver		5.39.0
+%define		kf5ver		5.39.0
 
 Summary:	plasma-nm
 Name:		kp5-%{kpname}
-Version:	5.93.0
-Release:	0.1
+Version:	5.27.10
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
-Source0:	https://download.kde.org/unstable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	a9407fcfeb522bfc273491ca0249ff23
+Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
+# Source0-md5:	2861104cf1e31393d9cd87701042d3aa
 URL:		http://www.kde.org/
-BuildRequires:	Qt6Core-devel >= 5.15.0
-BuildRequires:	Qt6DBus-devel >= 5.15.0
-BuildRequires:	Qt6Gui-devel >= 5.15.0
-BuildRequires:	Qt6Network-devel >= 5.15.2
-BuildRequires:	Qt6Qml-devel >= 5.15.2
-BuildRequires:	Qt6Quick-devel >= 5.15.0
+BuildRequires:	Qt5Core-devel >= 5.15.0
+BuildRequires:	Qt5DBus-devel >= 5.15.0
+BuildRequires:	Qt5Gui-devel >= 5.15.0
+BuildRequires:	Qt5Network-devel >= 5.15.2
+BuildRequires:	Qt5Qml-devel >= 5.15.2
+BuildRequires:	Qt5Quick-devel >= 5.15.0
 BuildRequires:	cmake >= 3.16.0
 BuildRequires:	gettext-devel
-BuildRequires:	kf6-extra-cmake-modules >= 5.70
-BuildRequires:	kf6-kauth-devel >= 5.85.0
-BuildRequires:	kf6-kcmutils-devel >= 5.70
-BuildRequires:	kf6-kcodecs-devel >= 5.85.0
-BuildRequires:	kf6-kconfig-devel >= 5.85.0
-BuildRequires:	kf6-kcoreaddons-devel >= 5.85.0
-BuildRequires:	kf6-kdbusaddons-devel >= 5.70
-BuildRequires:	kf6-kdeclarative-devel >= 5.70
-BuildRequires:	kf6-ki18n-devel >= 5.70
-BuildRequires:	kf6-knotifications-devel >= 5.70
-BuildRequires:	kf6-kpackage-devel >= 5.85.0
-BuildRequires:	kf6-kservice-devel >= 5.85.0
+BuildRequires:	kf5-extra-cmake-modules >= 5.70
+BuildRequires:	kf5-kauth-devel >= 5.85.0
+BuildRequires:	kf5-kcmutils-devel >= 5.70
+BuildRequires:	kf5-kcodecs-devel >= 5.85.0
+BuildRequires:	kf5-kconfig-devel >= 5.85.0
+BuildRequires:	kf5-kcoreaddons-devel >= 5.85.0
+BuildRequires:	kf5-kdbusaddons-devel >= 5.70
+BuildRequires:	kf5-kdeclarative-devel >= 5.70
+BuildRequires:	kf5-ki18n-devel >= 5.70
+BuildRequires:	kf5-knotifications-devel >= 5.70
+BuildRequires:	kf5-kpackage-devel >= 5.85.0
+BuildRequires:	kf5-kservice-devel >= 5.85.0
 BuildRequires:	ninja
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		qt6dir		%{_libdir}/qt6
+%define		qt5dir		%{_libdir}/qt5
 
 %description
 This repository contains a Plasma Sytem Settings module and a KDED
@@ -79,8 +79,15 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{kpname}.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libkbolt.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/kf6/kded/kded_bolt.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/plasma/kcms/systemsettings/kcm_bolt.so
+%{_libdir}/libkbolt.so
+%{_libdir}/qt5/plugins/kf5/kded/kded_bolt.so
+%{_datadir}/knotifications5/kded_bolt.notifyrc
+%dir %{_datadir}/kpackage/kcms/kcm_bolt
+%dir %{_datadir}/kpackage/kcms/kcm_bolt/contents
+%dir %{_datadir}/kpackage/kcms/kcm_bolt/contents/ui
+%{_datadir}/kpackage/kcms/kcm_bolt/contents/ui/DeviceList.qml
+%{_datadir}/kpackage/kcms/kcm_bolt/contents/ui/DeviceView.qml
+%{_datadir}/kpackage/kcms/kcm_bolt/contents/ui/main.qml
+%{_datadir}/kpackage/kcms/kcm_bolt/contents/ui/utils.js
+%{_libdir}/qt5/plugins/plasma/kcms/systemsettings/kcm_bolt.so
 %{_desktopdir}/kcm_bolt.desktop
-%{_datadir}/knotifications6/kded_bolt.notifyrc
